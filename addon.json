@@ -1,0 +1,7 @@
+{
+    "name": "ExtendedTaxonomyFieldtype",
+    "namespace": "ExtendedTaxonomyFieldtype",
+    "description": "Extended taxonomy field type",
+    "author": "Hui Yang",
+    "version": "1.0.0"
+}
