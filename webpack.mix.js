@@ -25,7 +25,7 @@ mix.setPublicPath('public')
         resolve: {
             alias: {
                 //'@': path.resolve(__dirname, 'resources/js/'),
-                '@': path.resolve(__dirname, '../../vendor/fusioncms/cms/resources/js/'),
+                '@': path.resolve(__dirname, '../../fusioncms/cms/resources/js/'),
             },
         },
     });

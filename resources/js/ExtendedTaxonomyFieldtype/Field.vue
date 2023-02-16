@@ -132,7 +132,7 @@
             this.fetchTaxonomy()
             this.resetForm()
 
-            this.model = _.map(this.value, 'id') || []
+            this.model = (_.isObject(this.value) ? _.map(this.value, 'id') : this.value) || []
         }
     }
 </script>
