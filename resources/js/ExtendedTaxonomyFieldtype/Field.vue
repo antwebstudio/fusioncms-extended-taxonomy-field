@@ -12,6 +12,7 @@
             >
 
             <treeselect v-model="model" :multiple="field.settings.multiple" :options="treeSelectOptions(taxonomy.terms)" v-if="taxonomy.terms && taxonomy.terms.length > 0" />
+            <div v-if="errorOccurred">Error occurred, please reload the page</div>
 
             <p v-else-if="showAddNew" class="text-sm leading-none">Add a {{ singular }} below.</p>
 
@@ -53,6 +54,9 @@
             return {
                 taxonomy: {},
                 form: false,
+                errorOccurred: false,
+                tried: 0,
+                tryIfError: 3,
             }
         },
 
@@ -124,6 +128,13 @@
             fetchTaxonomy() {
                 axios.get(`/api/taxonomies/${this.field.settings.taxonomy}`).then((response) => {
                     this.taxonomy = response.data.data
+                }).catch((error) => {
+                    if (this.tryIfError > this.tried) {
+                        this.fetchTaxonomy()
+                        this.tried++
+                    } else {
+                        this.errorOccurred = true
+                    }
                 })
             }
         },
